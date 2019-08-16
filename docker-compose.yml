@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     volumes:
       - dbinit:/docker-entrypoint-initdb.d        
-      - dbdata:/var/lib/mysql/data
+      - dbdata:/var/lib/mysql
     environment:
       MYSQL_USER: ${MYSQL_USER:-guacdb}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -24,6 +24,13 @@ services:
   guacd:
     image: guacamole/guacd:latest
     restart: unless-stopped
+
+  min:
+    image: min:latest
+    restart: unless-stopped
+    ports:
+      - "5903:5901"
+      - "6903:6901"
 
   guac:
     image: guacamole/guacamole:latest
@@ -39,6 +46,7 @@ services:
     depends_on:
       - mysql
       - guacd
+      - min
 
 volumes:
   dbinit:
