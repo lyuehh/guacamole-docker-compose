@@ -16,6 +16,7 @@ services:
       - dbdata:/var/lib/mysql/data
     environment:
       MYSQL_USER: ${MYSQL_USER:-guacdb}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     depends_on:
       - init-guacamole-db
