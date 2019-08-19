@@ -15,6 +15,7 @@ services:
       - dbinit:/docker-entrypoint-initdb.d        
       - dbdata:/var/lib/mysql
     environment:
+      MYSQL_DATABASE: guacamole_db
       MYSQL_USER: ${MYSQL_USER:-guacdb}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
